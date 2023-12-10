@@ -1,0 +1,29 @@
+name: Build Windows EXE
+
+on: [push]
+
+jobs:
+  build_exe:
+    name: Build EXE on Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' # Версія Python
+
+      - name: Install PyInstaller
+        run: pip install pyinstaller
+
+      - name: Compile Python script to EXE
+        run: pyinstaller --onefile --windowed bulk-checker.py
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-exe
+          path: dist/*.exe
