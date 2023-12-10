@@ -33,7 +33,7 @@ def check_urls():
 
     def fetch_urls():
         start_time = time.time()
-        with ThreadPoolExecutor(max_workers=5) as executor:
+        with ThreadPoolExecutor(max_workers=15) as executor:
             futures = {executor.submit(fetch_url, url): url for url in urls}
             for future in futures:
                 url, status_code, redirect_url = future.result()
