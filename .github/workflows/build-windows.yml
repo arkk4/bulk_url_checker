@@ -27,7 +27,7 @@ jobs:
 
 
       - name: Compile Python script to EXE
-        run: pyinstaller --onefile --windowed bulk-checker.spec
+        run: pyinstaller bulk-checker.spec
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
