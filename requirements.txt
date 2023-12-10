@@ -1,6 +1,1 @@
-tkinter
-threading
 requests
-csv
-concurrent.futures
-time
