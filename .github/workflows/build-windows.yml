@@ -16,11 +16,18 @@ jobs:
         with:
           python-version: '3.9' # Версія Python
 
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+  
       - name: Install PyInstaller
         run: pip install pyinstaller
 
+      - name: Generate spec file for PyInstaller
+        run: pyi-makespec --onefile --windowed bulk-checker.py
+
+
       - name: Compile Python script to EXE
-        run: pyinstaller --onefile --windowed bulk-checker.py
+        run: pyinstaller --onefile --windowed bulk-checker.spec
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
